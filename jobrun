@@ -1,0 +1,35 @@
+#!/bin/sh
+
+#BATCH -J RPMD
+#SBATCH -t 400:00:00
+#SBATCH -n 1
+#SBATCH -N 1
+#SBATCH -p astra
+#SBATCH -o ./SubReports/%x.o%j
+#SBATCH -e ./SubReports/%x.e%j
+#SBATCH --nodelist=c0055
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=ece52@cornell.edu
+
+# Enter the working directory
+cd ${SLURM_SUBMIT_DIR}
+echo "starting $SLURM_JOB_ID at `date` on `hostname`"
+echo "$USER"
+echo $SLURM_SUBMIT_DIR
+NUMNODES=1
+SIMDIR='/home/fs01/ece52/RPMDynamics/rpmdynamics/'
+
+# Make a temp directory
+/usr/bin/mkdir -p /tmp/$USER/$SLURM_JOB_ID
+
+# Copy files to the temp directory
+cp $SLURM_SUBMIT_DIR/bin/nrpmd     /tmp/$USER/$SLURM_JOB_ID/.
+
+mpirun -np $NUMNODES /home/fs01/ece52/RPMDynamics/rpmdynamics/RPMDynamics $SIMDIR
+
+# Copy output files back from the temp directory to working directory
+rsync -r /tmp/$USER/$SLURM_JOB_ID/ $SLURM_SUBMIT_DIR/
+
+rm -rf /tmp/$USER/$SLURM_JOB_ID/
+exit 0
+

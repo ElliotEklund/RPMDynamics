@@ -1,0 +1,11 @@
+0
+1
+0
+1
+
+#Run Dynamics option (0 = no, 1 = yes)
+#Energy Estimator output option (0 = no output, 1 = output)
+#Read IN configuration file (0 = don't read, 1 = read)
+#OUTPUT configuration file (0 = don't output, 1 = output)
+
+#RPMDynamics

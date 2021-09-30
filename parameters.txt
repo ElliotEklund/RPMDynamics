@@ -1,0 +1,25 @@
+1
+0.5
+4
+1000
+1
+0.7
+10
+10
+10
+0.05
+
+#m: a.u.
+#T: a.u.
+#number of beads
+
+#MC total steps
+#MC sampling rate
+#MC nuclear step size
+
+#dynamic trajectories
+#dynamic run time
+#dynamic decorrelation length
+#dynamic step size (dt)
+
+#RPMDynamics
